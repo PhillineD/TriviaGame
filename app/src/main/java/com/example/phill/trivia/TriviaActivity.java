@@ -60,7 +60,7 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
-    public  void Answer_clicked(View view ){
+    public void Answer_clicked(View view ){
 
         // check if answer was good
         String view_correct_answer = question.getCorrect_answer();

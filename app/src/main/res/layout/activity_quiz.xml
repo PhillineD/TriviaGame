@@ -9,37 +9,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@color/colorPrimaryDark"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/answer_1"
         android:layout_width="match_parent"
-        android:layout_height="67dp"
+        android:layout_height="10dp"
         android:layout_weight="1"
+        android:background="@color/colorPrimaryDark"
         android:onClick="Answer_clicked"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/answer_2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="10dp"
         android:layout_weight="1"
+        android:background="@color/colorPrimaryDark"
         android:onClick="Answer_clicked"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/answer_3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="10dp"
         android:layout_weight="1"
+        android:background="@color/colorPrimaryDark"
         android:onClick="Answer_clicked"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/answer_4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="10dp"
         android:layout_weight="1"
+        android:background="@color/colorPrimaryDark"
         android:onClick="Answer_clicked"
         android:text="TextView" />
 </LinearLayout>
