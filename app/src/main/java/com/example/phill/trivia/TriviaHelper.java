@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import javax.security.auth.callback.Callback;
 
-public class TriviaHelper implements Response.Listener, Response.ErrorListener {
+public class TriviaHelper implements Response.Listener<JSONObject>, Response.ErrorListener {
     private Context context;
     private Callback callback;
 
