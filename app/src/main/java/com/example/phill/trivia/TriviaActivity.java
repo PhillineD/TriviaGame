@@ -1,5 +1,6 @@
 package com.example.phill.trivia;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,9 +19,14 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // get the username from the player form the first screen
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+
         // open the screen to de the quiz
         setContentView(R.layout.activity_quiz);
 
+        // get a new question
         TriviaHelper helper = new TriviaHelper(this);
         helper.getQuestion(this);
 

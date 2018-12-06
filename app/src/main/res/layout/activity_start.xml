@@ -24,23 +24,46 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/startquiz"
         android:layout_width="364dp"
         android:layout_height="62dp"
         android:layout_gravity="center"
         android:layout_marginTop="120dp"
         android:background="@android:color/holo_blue_dark"
         android:onClick="StartQuiz"
-        android:text="Start quiz" />
+        android:text="Start quiz"
+        android:visibility="invisible" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/leaderboard"
         android:layout_width="364dp"
         android:layout_height="63dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@android:color/holo_blue_dark"
         android:onClick="Leaderboard"
-        android:text="Leaderboard" />
+        android:text="Leaderboard"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/Username"
+        android:layout_width="365dp"
+        android:layout_height="63dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_blue_dark"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Type in username"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/Ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_blue_dark"
+        android:onClick="Ok"
+        android:text="Ok" />
 
 </LinearLayout>
