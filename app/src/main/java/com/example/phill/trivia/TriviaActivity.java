@@ -2,6 +2,7 @@ package com.example.phill.trivia;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Callback {
     QuestionItems question;
+    int points;
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +50,22 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
 
     @Override
     public void gotError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
 
+    public  void Answer_clicked(View view ){
+
+        // check if answer was good
+        String view_correct_answer = question.getCorrect_answer();
+        TextView clicked = (TextView) view;
+        String choosen_answer = clicked.getText().toString();
+        if (view_correct_answer == choosen_answer){
+            points += 1;
+        }
+
+        // get next question
+        TriviaHelper helper = new TriviaHelper(this);
+        helper.getQuestion(this);
     }
 
 }
