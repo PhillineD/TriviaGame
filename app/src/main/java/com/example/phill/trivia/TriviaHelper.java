@@ -52,6 +52,8 @@ public class TriviaHelper implements Response.Listener<JSONObject>, Response.Err
     public void onResponse(JSONObject response) {
 
         try {
+
+            // each time pick a new question
             JSONArray question = response.getJSONArray("results");
             ArrayList<QuestionItems> quest = new ArrayList<>();
             for (int i = 0; i < question.length(); i++) {

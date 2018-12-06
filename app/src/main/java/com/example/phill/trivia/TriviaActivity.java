@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Callback {
     QuestionItems question;
-    int points;
+    int points,position;
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +40,7 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
         TextView view_answer3 = findViewById(R.id.answer_3);
         TextView view_answer4 = findViewById(R.id.answer_4);
 
+        // nu word het goede antwoord altijd op de laatse positie geplaatst
         view_answer1.setText(question.getAnswer_1());
         view_answer2.setText(question.getAnswer_2());
         view_answer3.setText(question.getAnswer_3());
