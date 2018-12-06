@@ -30,6 +30,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="120dp"
         android:background="@android:color/holo_blue_dark"
+        android:onClick="StartQuiz"
         android:text="Start quiz" />
 
     <Button
@@ -39,6 +40,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@android:color/holo_blue_dark"
+        android:onClick="Leaderboard"
         android:text="Leaderboard" />
 
 </LinearLayout>
