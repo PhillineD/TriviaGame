@@ -5,7 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 
 public class HighScoreHelper {
-    ArrayList<scores> scores = new ArrayList<>();
+    ArrayList<ListScoreItems> scores = new ArrayList<>();
     Context context;
     Callback callback;
 
@@ -14,16 +14,16 @@ public class HighScoreHelper {
     }
 
     public  interface Callback{
-        void gotscores(ArrayList<scores> scores);
+        void gotscores(ArrayList<ListScoreItems> scores);
         void gotscoreserror(String message);
     }
 
-    public void getScores(Context context){
+    public void setScores(String username, int score ){
         this.callback = callback;
-
+        ListScoreItems newscore = new ListScoreItems(username, score);
     }
 
-    public void setScores(Context context){
+    public void getScores(Context context){
         this.callback = callback;
     }
 
