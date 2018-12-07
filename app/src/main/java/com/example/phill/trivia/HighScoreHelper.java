@@ -25,6 +25,8 @@ public class HighScoreHelper {
 
     public void getScores(Context context){
         this.callback = callback;
+
+        // hier moet een connectie komen naar de databse
     }
 
 
