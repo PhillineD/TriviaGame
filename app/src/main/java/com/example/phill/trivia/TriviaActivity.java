@@ -18,7 +18,7 @@ import java.util.List;
 //implements QuestionRequest.Callback
 
 public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Callback {
-//    QuestionItems question;
+    //    QuestionItems question;
     ArrayList<QuestionItems> question;
     int points;
     int position = 0;
@@ -73,7 +73,7 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
 
     // if clicked on class
     private class AnswerClicked implements View.OnClickListener{
-
+        private TriviaActivity context;
         @Override
         public void onClick(View v) {
             String view_correct_answer = question.get(1).toString();
@@ -93,7 +93,9 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
             ScoreItems.add(newitem);
 
             // get next question
-//            TriviaHelper helper = new TriviaHelper(this);
+            new TriviaHelper(context).getQuestion(context);
+            position += 1;
+//            TriviaHelper helper = new TriviaHelper(createC);
 //            helper.getQuestion((TriviaHelper.Callback) this);
         }
     }

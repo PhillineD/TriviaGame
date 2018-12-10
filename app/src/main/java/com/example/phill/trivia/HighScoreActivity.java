@@ -3,6 +3,7 @@ package com.example.phill.trivia;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,7 +31,7 @@ public class HighScoreActivity extends AppCompatActivity implements HighScoreHel
     @Override
     public void gotscores(ArrayList<ListScoreItems> scores) {
         this.scores = scores;
-
+        Log.d("scoren", "gotscores: " +  scores.get(0).getUsername());
         ListView scor = findViewById(R.id.ListviewScores);
         scor.setFilterText(scores.get(0).getUsername()+ ":" + scores.get(0).getScore() );
 

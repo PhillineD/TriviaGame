@@ -18,8 +18,8 @@ public class TriviaHelper implements Response.Listener<JSONObject>, Response.Err
     private Context context;
     private Callback callback;
 
-    public TriviaHelper(Context context) {
-        this.context = context;
+    public TriviaHelper(Context acontext) {
+        this.context = acontext;
     }
 
 

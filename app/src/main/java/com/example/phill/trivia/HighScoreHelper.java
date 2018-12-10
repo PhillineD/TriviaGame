@@ -1,6 +1,8 @@
 package com.example.phill.trivia;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -9,6 +11,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
+
 import java.util.ArrayList;
 import java.util.ListIterator;
 
@@ -64,19 +68,24 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
 
             // each time pick a new scores, with a username and a score from that username
 //            JSONArray question = response.getJSONArray("username");
-            JSONArray question = response.getJSONArray("");
+//            JSONArray question = response.getJSONArray("username");
+            JSONObject vraag = response.getJSONObject("username");
+            String username = vraag.toString();
+            String sccre = vraag.toString();
+            ListScoreItems score = new ListScoreItems(username, sccre);
+            quest.add(score);
 
-            for (int i = 0; i < question.length(); i++) {
-
-                JSONObject json = question.getJSONObject(i);
-
-                String Username = json.getString("username");
-                String Score = json.getString("score");
-
-                ListScoreItems score = new ListScoreItems(Username, Score);
-
-//                // add question and answers to the list
-                quest.add(score);
+//            for (int i = 0; i < question.length(); i++) {
+//
+//                    JSONObject json = question.getJSONObject(i);
+//
+//                    String Username = json.getString("username");
+//                    String Score = json.getString("score");
+//                    Log.d("scoren ophalen", "onResponse: " + Score + Username);
+//                    ListScoreItems score = new ListScoreItems(Username, Score);
+//
+////                // add question and answers to the list
+//                    quest.add(score);
 
             }
 
