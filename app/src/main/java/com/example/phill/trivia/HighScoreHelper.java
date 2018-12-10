@@ -15,32 +15,22 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class HighScoreHelper implements Response.ErrorListener, Response.Listener<JSONObject> {
-    ArrayList<ListScoreItems> scores = new ArrayList<>();
+    ArrayList<ListScoreItems> Highscores = new ArrayList<>();
     Context context;
     Callback callback;
 
-    public HighScoreHelper(Context context){
+    public HighScoreHelper(Context context) {
         this.context = context;
     }
 
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        callback.gotscoreserror(error.getMessage());
-    }
+    public interface Callback {
+        void gotscores(ListScoreItems scores);
 
-    public  interface Callback{
-        void gotscores(ArrayList<ListScoreItems> scores);
         void gotscoreserror(String message);
     }
 
-    public void setScores(String username, String score ){
-        this.callback = callback;
-        ListScoreItems newscore = new ListScoreItems(username, score);
-
-    }
-
     // get high score from server
-    public void getScores(Context context){
+    public void getScores(Context context) {
         this.callback = callback;
 
         // url to server with the scores from the users
@@ -52,6 +42,22 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
         queue.add(request);
 
     }
+
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        callback.gotscoreserror(error.getMessage());
+    }
+
+
+    public void setScores(String username, String score) {
+        this.callback = callback;
+        ListScoreItems newscore = new ListScoreItems(username, score);
+        Highscores.add(newscore);
+        // create an new jason object
+//        JSONObject json = new JSONObject();
+    }
+
 
     @Override
     public void onResponse(JSONObject response) {
@@ -82,4 +88,5 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
         }
 
 
+    }
 }

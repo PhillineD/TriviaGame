@@ -15,20 +15,26 @@ public class HighScoreActivity extends AppCompatActivity implements HighScoreHel
         setContentView(R.layout.activity_start);
 
         HighScoreHelper helper = new HighScoreHelper(this);
-//        helper.getScores(this, ); hier moet nog een verwijzing komen naar de database
+
+        // get scores from user
+        helper.getScores(this);
+
 
     }
 
 
     @Override
-    public void gotscores(ArrayList<ListScoreItems> scores) {
+    public void gotscores(ListScoreItems scores) {
 
         //  Moet nog een adapter class komen om er steeds weer een highscore aan toe te voegen
 
-        ListView scors = findViewById(R.id.ListviewScores);
-        scores.set(adapter);
+        ListView scor = findViewById(R.id.ListviewScores);
+
+        // set text
+        scor.setFilterText(scores.getUsername()+ ":" + scores.getScore() );
 
     }
+
 
     @Override
     public void gotscoreserror(String message) {

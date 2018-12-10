@@ -15,13 +15,14 @@ import java.util.ArrayList;
 public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Callback {
     QuestionItems question;
     int points,position;
+    String Points;
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // get the username from the player form the first screen
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
+//        // get the username from the player form the first screen
+//        Intent intent = getIntent();
+//        String username = intent.getStringExtra("username");
 
         // open the screen to de the quiz
         setContentView(R.layout.activity_quiz);
@@ -52,6 +53,8 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
         view_answer3.setText(question.getAnswer_3());
         view_answer4.setText(question.getAnswer_4());
 
+        // op een random positie moet een vraag komen
+
 
     }
 
@@ -69,6 +72,13 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
         if (view_correct_answer == choosen_answer){
             points += 1;
         }
+
+
+        // get the username from the player form the first screen
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+        Points = String.valueOf(points);
+        ListScoreItems newitem = new ListScoreItems(username, Points );
 
         // get next question
         TriviaHelper helper = new TriviaHelper(this);
