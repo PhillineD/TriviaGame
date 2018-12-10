@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class ListScoreItems implements Serializable {
 
     String username;
-    int score;
+    String score;
 
     // getters and setters for username and score
     public String getUsername() {
@@ -16,15 +16,15 @@ public class ListScoreItems implements Serializable {
         this.username = username;
     }
 
-    public int getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(String score) {
         this.score = score;
     }
 
-    public ListScoreItems(String username, int score){
+    public ListScoreItems(String username, String score){
         this.username = username;
         this.score = score;
     }

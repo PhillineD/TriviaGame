@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class HighScoreHelper implements Response.ErrorListener {
+public class HighScoreHelper implements Response.ErrorListener, Response.Listener<JSONObject> {
     ArrayList<ListScoreItems> scores = new ArrayList<>();
     Context context;
     Callback callback;
@@ -33,15 +33,17 @@ public class HighScoreHelper implements Response.ErrorListener {
         void gotscoreserror(String message);
     }
 
-    public void setScores(String username, int score ){
+    public void setScores(String username, String score ){
         this.callback = callback;
         ListScoreItems newscore = new ListScoreItems(username, score);
+
     }
 
     // get high score from server
     public void getScores(Context context){
         this.callback = callback;
 
+        // url to server
         String url = "https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple";
 
         // request
@@ -49,7 +51,6 @@ public class HighScoreHelper implements Response.ErrorListener {
         JsonObjectRequest request = new JsonObjectRequest(url, null, this, this);
         queue.add(request);
 
-        // hier moet een connectie komen naar de databse
     }
 
     @Override
@@ -57,28 +58,22 @@ public class HighScoreHelper implements Response.ErrorListener {
 
         try {
 
-            // each time pick a new question
-            JSONArray question = response.getJSONArray("results");
-            ArrayList<QuestionItems> quest = new ArrayList<>();
+            // each time pick a new scores, with a username and a score from that username
+            JSONArray question = response.getJSONArray("scores");
+            ArrayList<ListScoreItems> quest = new ArrayList<>();
             for (int i = 0; i < question.length(); i++) {
 
                 JSONObject json = question.getJSONObject(i);
 
-                String Question = json.getString("question");
-                String Correct_Answer = json.getString("correct_answer");
-                String Incorrect_Answers = json.getString("incorrect_answers");
-                JSONArray answers = new JSONArray(Incorrect_Answers);
-                String answer_1 = answers.getString(0);
-                String answer_2 = answers.getString(1);
-                String answer_3 = answers.getString(2);
-                String answer_4 = json.getString("correct_answer");
+                String Username = json.getString("username");
+                String Score = json.getString("score");
 
-                QuestionItems item = new QuestionItems(Question, answer_1, answer_2, answer_3, answer_4, Correct_Answer);
+                ListScoreItems score = new ListScoreItems(Username, Score);
 //
 //                // add question and answers to the list
-                quest.add(item);
+                quest.add(score);
 
-                callback.gotscores(item);
+                callback.gotscores(score);
 
             }
 
