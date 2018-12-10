@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 
 public class HighScoreHelper implements Response.ErrorListener, Response.Listener<JSONObject> {
-    ArrayList<ListScoreItems> Highscores = new ArrayList<>();
+//    ArrayList<ListScoreItems> Highscores = new ArrayList<>();
     Context context;
     Callback callback;
 
@@ -28,7 +28,7 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
     }
 
     // get high score from server
-    public void getScores(Context context) {
+    public void getScores(Callback callback) {
         this.callback = callback;
 
         // url to server with the scores from the users
@@ -48,13 +48,13 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
     }
 
 
-    public void setScores(String username, String score) {
-        this.callback = callback;
-        ListScoreItems newscore = new ListScoreItems(username, score);
-        Highscores.add(newscore);
-        // create an new jason object
-//        JSONObject json = new JSONObject();
-    }
+//    public void setScores(String username, String score) {
+////        this.callback = callback;
+////        ListScoreItems newscore = new ListScoreItems(username, score);
+////        Highscores.add(newscore);
+////        // create an new jason object
+//////        JSONObject json = new JSONObject();
+////    }
 
 
     @Override
@@ -63,8 +63,9 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
         try {
 
             // each time pick a new scores, with a username and a score from that username
-            JSONArray question = response.getJSONArray("scores");
-//            ArrayList<ListScoreItems> quest = new ArrayList<>();
+//            JSONArray question = response.getJSONArray("username");
+            JSONArray question = response.getJSONArray("");
+
             for (int i = 0; i < question.length(); i++) {
 
                 JSONObject json = question.getJSONObject(i);

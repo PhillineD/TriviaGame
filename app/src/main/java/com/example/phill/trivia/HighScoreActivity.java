@@ -1,5 +1,6 @@
 package com.example.phill.trivia;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
@@ -15,8 +16,8 @@ public class HighScoreActivity extends AppCompatActivity implements HighScoreHel
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
-
+        setContentView(R.layout.activity_scores);
+        Intent intent = getIntent();
         HighScoreHelper helper = new HighScoreHelper(this);
 
         // get scores from user
@@ -31,7 +32,7 @@ public class HighScoreActivity extends AppCompatActivity implements HighScoreHel
         this.scores = scores;
 
         ListView scor = findViewById(R.id.ListviewScores);
-        scor.setFilterText(scores.get(0)+ ":" + scores.get(1) );
+        scor.setFilterText(scores.get(0).getUsername()+ ":" + scores.get(0).getScore() );
 
     }
 

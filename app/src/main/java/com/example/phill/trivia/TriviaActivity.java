@@ -21,6 +21,7 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
 //    QuestionItems question;
     ArrayList<QuestionItems> question;
     int points;
+    int position = 0;
     String Points;
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
@@ -45,10 +46,10 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
 
         //set question
         TextView view_question = findViewById(R.id.question);
-        view_question.setText(question.get(0).getQuestion_1());
-        Log.d("verkeerd", "gotQuestion: " + question.get(0).getAnswer_1() );
+        view_question.setText(question.get(position).getQuestion_1());
+        Log.d("verkeerd", "gotQuestion: " + question.get(position).getAnswer_1() );
 
-        List<String> ques = Arrays.asList(question.get(0).getAnswer_1(),question.get(0).getAnswer_2(),question.get(0).getAnswer_3(), question.get(0).getAnswer_4());
+        List<String> ques = Arrays.asList(question.get(position).getAnswer_1(),question.get(position).getAnswer_2(),question.get(position).getAnswer_3(), question.get(position).getAnswer_4());
         Collections.shuffle(ques);
 
         // set answers random

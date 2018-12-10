@@ -31,7 +31,7 @@ public class StartActivity extends AppCompatActivity {
 
     // if clicked on Leaderboard
     public void Leaderboard(View view) {
-        Intent intent = new Intent(getApplicationContext(),HighScoreActivity.class);
+        Intent intent = new Intent(StartActivity.this, HighScoreActivity.class);
         startActivity(intent);
     }
 

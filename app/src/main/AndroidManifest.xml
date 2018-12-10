@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TriviaActivity"/>
+        <activity android:name=".HighScoreActivity"/>
     </application>
 
 </manifest>
