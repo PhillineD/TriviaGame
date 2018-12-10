@@ -1,18 +1,16 @@
 package com.example.phill.trivia;
 
 import android.content.Context;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 public class HighScoreHelper implements Response.ErrorListener, Response.Listener<JSONObject> {
     ArrayList<ListScoreItems> Highscores = new ArrayList<>();
@@ -24,7 +22,7 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
     }
 
     public interface Callback {
-        void gotscores(ListScoreItems scores);
+        void gotscores(ArrayList<ListScoreItems> scores);
 
         void gotscoreserror(String message);
     }
@@ -61,12 +59,12 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
 
     @Override
     public void onResponse(JSONObject response) {
-
+        ArrayList<ListScoreItems> quest = new ArrayList<>();
         try {
 
             // each time pick a new scores, with a username and a score from that username
             JSONArray question = response.getJSONArray("scores");
-            ArrayList<ListScoreItems> quest = new ArrayList<>();
+//            ArrayList<ListScoreItems> quest = new ArrayList<>();
             for (int i = 0; i < question.length(); i++) {
 
                 JSONObject json = question.getJSONObject(i);
@@ -75,13 +73,13 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
                 String Score = json.getString("score");
 
                 ListScoreItems score = new ListScoreItems(Username, Score);
-//
+
 //                // add question and answers to the list
                 quest.add(score);
 
-                callback.gotscores(score);
-
             }
+
+            callback.gotscores(quest);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -89,4 +87,5 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
 
 
     }
+
 }

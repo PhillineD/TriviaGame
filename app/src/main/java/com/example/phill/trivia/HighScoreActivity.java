@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 public class HighScoreActivity extends AppCompatActivity implements HighScoreHelper.Callback {
 
+    ArrayList<ListScoreItems> scores;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,14 +27,11 @@ public class HighScoreActivity extends AppCompatActivity implements HighScoreHel
 
 
     @Override
-    public void gotscores(ListScoreItems scores) {
-
-        //  Moet nog een adapter class komen om er steeds weer een highscore aan toe te voegen
+    public void gotscores(ArrayList<ListScoreItems> scores) {
+        this.scores = scores;
 
         ListView scor = findViewById(R.id.ListviewScores);
-
-        // set text
-        scor.setFilterText(scores.getUsername()+ ":" + scores.getScore() );
+        scor.setFilterText(scores.get(0)+ ":" + scores.get(1) );
 
     }
 

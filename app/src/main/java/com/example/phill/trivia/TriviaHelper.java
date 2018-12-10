@@ -22,6 +22,8 @@ public class TriviaHelper implements Response.Listener<JSONObject>, Response.Err
         this.context = context;
     }
 
+
+
     public interface Callback {
         void gotQuestion(ArrayList<QuestionItems> question);
 
