@@ -43,8 +43,8 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
     public void getScores(Context context){
         this.callback = callback;
 
-        // url to server
-        String url = "https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple";
+        // url to server with the scores from the users
+        String url = "https://ide50-pdikker.cs50.io:8080/list";
 
         // request
         RequestQueue queue = Volley.newRequestQueue(context);
