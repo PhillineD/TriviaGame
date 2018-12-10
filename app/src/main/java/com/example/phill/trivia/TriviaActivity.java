@@ -2,14 +2,17 @@ package com.example.phill.trivia;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.solver.widgets.Helper;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.ref.SoftReference;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 //implements QuestionRequest.Callback
 
 public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Callback {
@@ -34,27 +37,23 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
     }
 
     @Override
-    public void gotQuestion(QuestionItems question) {
+    public void gotQuestion(ArrayList<QuestionItems> question) {
         this.question = question;
-
-        //set question
+        List<String> ques = Arrays.asList(question.get(0),question.get(1),question.get(),question.getAnswer_4());
+        Collections.shuffle(ques);        //set question
         TextView view_question = findViewById(R.id.question);
         view_question.setText(question.getQuestion_1());
 
-        // set answers
+        // set answers random
         TextView view_answer1 = findViewById(R.id.answer_1);
         TextView view_answer2 = findViewById(R.id.answer_2);
         TextView view_answer3 = findViewById(R.id.answer_3);
         TextView view_answer4 = findViewById(R.id.answer_4);
 
-        // nu word het goede antwoord altijd op de laatse positie geplaatst
-        view_answer1.setText(question.getAnswer_1());
-        view_answer2.setText(question.getAnswer_2());
-        view_answer3.setText(question.getAnswer_3());
-        view_answer4.setText(question.getAnswer_4());
-
         // op een random positie moet een vraag komen
-
+        view_answer1.setText(ques.get(0));
+        view_answer2.setText(ques.get(1));
+        view_answer3.setText(ques.get(2));view_answer4.setText(ques.get(3));
 
     }
 
@@ -72,7 +71,6 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
         if (view_correct_answer == choosen_answer){
             points += 1;
         }
-
 
         // get the username from the player form the first screen
         Intent intent = getIntent();

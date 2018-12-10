@@ -1,6 +1,8 @@
 package com.example.phill.trivia;
 
-public class QuestionItems {
+import java.util.ArrayList;
+
+public class QuestionItems extends ArrayList<QuestionItems> {
 
     private final String question_1, answer_1, answer_2, answer_3, answer_4, correct_answer;
 

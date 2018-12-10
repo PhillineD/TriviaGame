@@ -14,8 +14,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import javax.security.auth.callback.Callback;
-
 public class TriviaHelper implements Response.Listener<JSONObject>, Response.ErrorListener {
     private Context context;
     private Callback callback;
@@ -25,7 +23,7 @@ public class TriviaHelper implements Response.Listener<JSONObject>, Response.Err
     }
 
     public interface Callback {
-        void gotQuestion(QuestionItems question);
+        void gotQuestion(ArrayList<QuestionItems> question);
 
         void gotError(String message);
     }
@@ -50,12 +48,12 @@ public class TriviaHelper implements Response.Listener<JSONObject>, Response.Err
 
     @Override
     public void onResponse(JSONObject response) {
-
+        ArrayList<QuestionItems> quest = new ArrayList<>();
         try {
 
             // each time pick a new question
             JSONArray question = response.getJSONArray("results");
-            ArrayList<QuestionItems> quest = new ArrayList<>();
+
             for (int i = 0; i < question.length(); i++) {
 
                 JSONObject json = question.getJSONObject(i);
@@ -74,9 +72,9 @@ public class TriviaHelper implements Response.Listener<JSONObject>, Response.Err
 //                // add question and answers to the list
                 quest.add(item);
 
-                callback.gotQuestion(item);
-
             }
+
+            callback.gotQuestion(quest);
 
         } catch (JSONException e) {
             e.printStackTrace();
