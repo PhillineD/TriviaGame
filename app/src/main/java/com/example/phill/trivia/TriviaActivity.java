@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.solver.widgets.Helper;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,10 +25,10 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.d("foutje3", "StartQuiz: ");
 //        // get the username from the player form the first screen
-//        Intent intent = getIntent();
-//        String username = intent.getStringExtra("username");
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
 
         // open the screen to de the quiz
         setContentView(R.layout.activity_quiz);
@@ -44,10 +45,10 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
 
         //set question
         TextView view_question = findViewById(R.id.question);
-        view_question.setText((CharSequence) question.get(0));
+        view_question.setText(question.get(0).getQuestion_1());
+        Log.d("verkeerd", "gotQuestion: " + question.get(0).getAnswer_1() );
 
-
-        List<QuestionItems> ques = Arrays.asList(question.get(1),question.get(2),question.get(3),question.get(4));
+        List<String> ques = Arrays.asList(question.get(0).getAnswer_1(),question.get(0).getAnswer_2(),question.get(0).getAnswer_3(), question.get(0).getAnswer_4());
         Collections.shuffle(ques);
 
         // set answers random
@@ -57,11 +58,11 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
         TextView view_answer4 = findViewById(R.id.answer_4);
 
         // op een random positie moet een vraag komen
-        view_answer1.setText( (CharSequence) ques.get(0));
-        view_answer2.setText((CharSequence) ques.get(1));
-        view_answer3.setText( (CharSequence) ques.get(2));
-        view_answer4.setText( (CharSequence) ques.get(3));
-
+        view_answer1.setText(ques.get(0));
+        view_answer2.setText( ques.get(1));
+        view_answer3.setText( ques.get(2));
+        view_answer4.setText( ques.get(3));
+//
         view_answer1.setOnClickListener(new AnswerClicked());
         view_answer2.setOnClickListener(new AnswerClicked());
         view_answer3.setOnClickListener(new AnswerClicked());

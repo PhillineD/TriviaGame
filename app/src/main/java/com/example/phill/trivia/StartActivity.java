@@ -3,6 +3,7 @@ package com.example.phill.trivia;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,13 +20,19 @@ public class StartActivity extends AppCompatActivity {
     // if clicked on StartQuiz
     public void StartQuiz(View view) {
         EditText username = findViewById(R.id.Username);
-        Intent intent = new Intent(getApplicationContext(),TriviaActivity.class);
+        Intent intent = new Intent(StartActivity.this ,TriviaActivity.class);
         intent.putExtra("username",username.getText().toString() );
+
+        Log.d("foutje", "StartQuiz: ");
         startActivity(intent);
+        Log.d("foutje1", "StartQuiz: ");
     }
+
 
     // if clicked on Leaderboard
     public void Leaderboard(View view) {
+        Intent intent = new Intent(getApplicationContext(),HighScoreActivity.class);
+        startActivity(intent);
     }
 
     // if ok clicked
