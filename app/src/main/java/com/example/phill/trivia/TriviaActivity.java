@@ -31,7 +31,7 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
 
-        // open the screen to de the quiz
+        // open the screen to  the quiz
         setContentView(R.layout.activity_quiz);
 
         // get a new question
@@ -44,7 +44,6 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
     public void gotQuestion(ArrayList<QuestionItems> question) {
         this.question = question;
 
-//        QuestionItems quest = question.get(position);
         //set question
         TextView view_question = findViewById(R.id.question);
         view_question.setText(question.get(position).getQuestion_1());
@@ -77,15 +76,15 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
         private TriviaActivity context;
         @Override
         public void onClick(View v) {
-            this.context = context;
-            String view_correct_answer = question.get(1).toString();
-            TextView clicked = (TextView) v;
-            String choosen_answer = clicked.getText().toString();
-
-            // if answer is right get point
-            if (view_correct_answer == choosen_answer){
-                points += 1;
-            }
+//            this.context = context;
+//            String view_correct_answer = question.get(1).toString();
+////            TextView clicked = (TextView) v;
+////            String choosen_answer = clicked.getText().toString();
+////
+////            // if answer is right get point
+////            if (view_correct_answer == choosen_answer){
+////                points += 1;
+////            }
 
             ArrayList<ListScoreItems> ScoreItems = new ArrayList<>();
             Intent intent = getIntent();
@@ -101,16 +100,18 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
 //            helper.getQuestion((TriviaHelper.Callback) this);
 
             // get a new question
-            TriviaHelper help = new TriviaHelper(context);
-            help.getQuestion(this.context);
+            TriviaHelper help = new TriviaHelper(getApplicationContext());
+            help.getQuestion(TriviaActivity.this);
 
-            // when all questions are ask, go to score page
             if (position == 7){
-//                String message = "To see your score go to leaderboard";
-//                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-                Intent naviintent = new Intent(TriviaActivity.this, StartActivity.class);
-                startActivity(naviintent);
+
             }
+
+//            Intent pintent = new Intent(TriviaActivity.this, TriviaHelper.class);
+//            intent.putExtra("position", position);
+//            startActivity(pintent);
+
+
 
         }
     }
