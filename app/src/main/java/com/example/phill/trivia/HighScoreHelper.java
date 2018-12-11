@@ -63,37 +63,37 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
 
     @Override
     public void onResponse(JSONObject response) {
-//        ArrayList<ListScoreItems> quest = new ArrayList<>();
-//        try {
-//
-//            // each time pick a new scores, with a username and a score from that username
-////            JSONArray question = response.getJSONArray("username");
-//////            JSONArray question = response.getJSONArray("username");
-////            JSONObject vraag = response.getJSONObject("username");
-////            String username = vraag.toString();
-////            String sccre = vraag.toString();
-////            ListScoreItems score = new ListScoreItems(username, sccre);
-////            quest.add(score);
-//
-////            for (int i = 0; i < question.length(); i++) {
-////
-////                    JSONObject json = question.getJSONObject(i);
-////
-////                    String Username = json.getString("username");
-////                    String Score = json.getString("score");
-////                    Log.d("scoren ophalen", "onResponse: " + Score + Username);
-////                    ListScoreItems score = new ListScoreItems(Username, Score);
-////
-//////                // add question and answers to the list
-////                    quest.add(score);
-//
-//            }
-//
-//            callback.gotscores(quest);
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        ArrayList<ListScoreItems> quest = new ArrayList<>();
+        try {
+
+//             each time pick a new scores, with a username and a score from that username
+//            JSONArray question = response.getJSONArray("username");
+            JSONArray question = response.getJSONArray("list");
+//            JSONObject vraag = response.getJSONObject("username");
+//            String username = vraag.toString();
+//            String sccre = vraag.toString();
+//            ListScoreItems score = new ListScoreItems(username, sccre);
+//            quest.add(score);
+
+            for (int i = 0; i < question.length(); i++) {
+
+                    JSONObject json = question.getJSONObject(i);
+
+                    String Username = json.getString("username");
+                    String Score = json.getString("score");
+                    Log.d("scoren ophalen", "onResponse: " + Score + Username);
+                    ListScoreItems score = new ListScoreItems(Username, Score);
+
+//                // add question and answers to the list
+                    quest.add(score);
+
+            }
+
+            callback.gotscores(quest);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
     }
