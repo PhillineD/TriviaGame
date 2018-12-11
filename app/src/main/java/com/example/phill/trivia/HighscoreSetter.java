@@ -30,7 +30,8 @@ public class HighscoreSetter {
         StringRequest pastescore = new StringRequest(Request.Method.POST, url, null, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "fail", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                Log.d("oh oh waar", "onErrorResponse: " + error.toString());
             }
         }) {
             @Override
@@ -44,7 +45,6 @@ public class HighscoreSetter {
         };
         Log.d("plakken van de score", "setScore: " + pastescore);
         queue.add(pastescore);
-
 
     }
 
