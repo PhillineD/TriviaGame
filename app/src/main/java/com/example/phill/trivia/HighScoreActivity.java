@@ -23,17 +23,16 @@ public class HighScoreActivity extends AppCompatActivity implements HighScoreHel
 
         // get scores from user
         helper.getScores(this);
-
-
     }
 
 
     @Override
     public void gotscores(ArrayList<ListScoreItems> scores) {
-        this.scores = scores;
+//        this.scores = scores;
+        HighScoreAdapter adapter = new HighScoreAdapter(this, R.layout.highscore_item, scores);
         Log.d("scoren", "gotscores: " +  scores.get(0).getUsername());
         ListView scor = findViewById(R.id.ListviewScores);
-        scor.setFilterText(scores.get(0).getUsername()+ ":" + scores.get(0).getScore() );
+        scor.setAdapter(adapter);
 
     }
 

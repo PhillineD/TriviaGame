@@ -3,9 +3,11 @@ package com.example.phill.trivia;
 import android.content.Context;
 import android.util.Log;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
@@ -16,7 +18,7 @@ import org.json.JSONStringer;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-public class HighScoreHelper implements Response.ErrorListener, Response.Listener<JSONObject> {
+public class HighScoreHelper implements Response.ErrorListener, Response.Listener<JSONArray> {
 //    ArrayList<ListScoreItems> Highscores = new ArrayList<>();
     Context context;
     Callback callback;
@@ -40,7 +42,7 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
 
         // request
         RequestQueue queue = Volley.newRequestQueue(context);
-        JsonObjectRequest request = new JsonObjectRequest(url, null, this, this);
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url,null, this, this);
         queue.add(request);
 
     }
@@ -52,41 +54,25 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
     }
 
 
-//    public void setScores(String username, String score) {
-////        this.callback = callback;
-////        ListScoreItems newscore = new ListScoreItems(username, score);
-////        Highscores.add(newscore);
-////        // create an new jason object
-//////        JSONObject json = new JSONObject();
-////    }
-
 
     @Override
-    public void onResponse(JSONObject response) {
+    public void onResponse(JSONArray response) {
+        Log.d("scoren ophalen", "onResponse: hier wel "  ) ;
         ArrayList<ListScoreItems> quest = new ArrayList<>();
         try {
-
 //             each time pick a new scores, with a username and a score from that username
 //            JSONArray question = response.getJSONArray("username");
-            JSONArray question = response.getJSONArray("list");
-//            JSONObject vraag = response.getJSONObject("username");
-//            String username = vraag.toString();
-//            String sccre = vraag.toString();
-//            ListScoreItems score = new ListScoreItems(username, sccre);
-//            quest.add(score);
-
-            for (int i = 0; i < question.length(); i++) {
-
-                    JSONObject json = question.getJSONObject(i);
+            for (int i = 0; i < response.length(); i++) {
+                    JSONObject json = response.getJSONObject(i);
 
                     String Username = json.getString("username");
-                    String Score = json.getString("score");
+                    String Score = json.getString("scores");
                     Log.d("scoren ophalen", "onResponse: " + Score + Username);
+
                     ListScoreItems score = new ListScoreItems(Username, Score);
 
 //                // add question and answers to the list
                     quest.add(score);
-
             }
 
             callback.gotscores(quest);

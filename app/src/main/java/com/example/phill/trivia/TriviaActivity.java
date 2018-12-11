@@ -107,7 +107,12 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
             help.getQuestion(TriviaActivity.this);
 
             if (position == 7){
-                Intent pintent = new Intent(TriviaActivity.this, StartActivity.class);
+
+                HighscoreSetter post = new HighscoreSetter(TriviaActivity.this);
+                post.setScore(username,points);
+
+
+                Intent pintent = new Intent(TriviaActivity.this, HighScoreActivity.class);
                 Toast.makeText(TriviaActivity.this, "Points : " + Points, Toast.LENGTH_LONG).show();
                 startActivity(pintent);
             }
