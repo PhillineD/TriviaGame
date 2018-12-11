@@ -18,8 +18,8 @@ public class TriviaHelper implements Response.Listener<JSONObject>, Response.Err
     private Context context;
     private Callback callback;
 
-    public TriviaHelper(Context acontext) {
-        this.context = acontext;
+    public TriviaHelper(Context context) {
+        this.context = context;
     }
 
 
@@ -31,16 +31,15 @@ public class TriviaHelper implements Response.Listener<JSONObject>, Response.Err
     }
 
     void getQuestion(Callback callback) {
-        this.callback = callback;
 
         // link to API
         String url = "https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple";
 
         // request
-        RequestQueue queue = Volley.newRequestQueue(context);
+        RequestQueue queue = Volley.newRequestQueue(this.context);
         JsonObjectRequest request = new JsonObjectRequest(url, null, this, this);
         queue.add(request);
-
+        this.callback = callback;
     }
 
     @Override
@@ -76,7 +75,7 @@ public class TriviaHelper implements Response.Listener<JSONObject>, Response.Err
 
             }
 
-            callback.gotQuestion(quest);
+            this.callback.gotQuestion(quest);
 
         } catch (JSONException e) {
             e.printStackTrace();

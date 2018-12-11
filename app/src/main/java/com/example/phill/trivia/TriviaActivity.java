@@ -44,6 +44,7 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
     public void gotQuestion(ArrayList<QuestionItems> question) {
         this.question = question;
 
+//        QuestionItems quest = question.get(position);
         //set question
         TextView view_question = findViewById(R.id.question);
         view_question.setText(question.get(position).getQuestion_1());
@@ -76,6 +77,7 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
         private TriviaActivity context;
         @Override
         public void onClick(View v) {
+            this.context = context;
             String view_correct_answer = question.get(1).toString();
             TextView clicked = (TextView) v;
             String choosen_answer = clicked.getText().toString();
@@ -93,10 +95,23 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
             ScoreItems.add(newitem);
 
             // get next question
-            new TriviaHelper(context).getQuestion(context);
+//            new TriviaHelper(context).getQuestion(context);
             position += 1;
-//            TriviaHelper helper = new TriviaHelper(createC);
+//            TriviaHelper helper = new TriviaHelper(context);
 //            helper.getQuestion((TriviaHelper.Callback) this);
+
+            // get a new question
+            TriviaHelper help = new TriviaHelper(context);
+            help.getQuestion(this.context);
+
+            // when all questions are ask, go to score page
+            if (position == 7){
+//                String message = "To see your score go to leaderboard";
+//                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                Intent naviintent = new Intent(TriviaActivity.this, StartActivity.class);
+                startActivity(naviintent);
+            }
+
         }
     }
 
