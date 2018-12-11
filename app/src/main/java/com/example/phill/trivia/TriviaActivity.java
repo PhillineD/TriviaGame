@@ -87,6 +87,10 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
             // if answer is right get point
             if (view_correct_answer == choosen_answer){
                 points += 1;
+                Toast.makeText(TriviaActivity.this, "Yeah right answer", Toast.LENGTH_LONG).show();
+            }
+            else{
+                Toast.makeText(TriviaActivity.this, "Unfortunately, wrong answer", Toast.LENGTH_LONG).show();
             }
             Log.d("puntentelling", "onClick: " + points);
             ArrayList<ListScoreItems> ScoreItems = new ArrayList<>();

@@ -17,7 +17,7 @@
         android:text="Let's play sport trivia game!"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        android:textStyle="normal"
+        android:textStyle="normal|bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -29,29 +29,32 @@
         android:layout_height="63dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@color/colorPrimaryDark"
         android:ems="10"
         android:gravity="center"
         android:hint="Type in username"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="@android:color/black"
+        tools:background="@color/colorAccent" />
 
     <Button
         android:id="@+id/Ok"
-        android:layout_width="365dp"
+        android:layout_width="100dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@color/colorPrimaryDark"
         android:onClick="Ok"
-        android:text="Ok" />
+        android:text="Ok"
+        android:textColor="@android:color/black"
+        android:textColorLink="@color/colorAccent" />
 
     <Button
         android:id="@+id/startquiz"
         android:layout_width="364dp"
         android:layout_height="62dp"
         android:layout_gravity="center"
-        android:layout_marginTop="80dp"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@color/colorPrimaryDark"
         android:onClick="StartQuiz"
         android:text="Start quiz"
         android:visibility="invisible" />
@@ -62,7 +65,7 @@
         android:layout_height="63dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@color/colorPrimaryDark"
         android:onClick="Leaderboard"
         android:text="Leaderboard"
         android:visibility="invisible" />

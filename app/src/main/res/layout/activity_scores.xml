@@ -15,7 +15,8 @@
         android:gravity="center"
         android:text="Scores"
         android:textColor="@android:color/black"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/ListviewScores"
