@@ -7,6 +7,8 @@ import android.support.constraint.solver.widgets.Helper;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
     int points;
     int position = 0;
     String Points;
+    int lengte = 5 ;
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,15 +80,15 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
         @Override
         public void onClick(View v) {
 //            this.context = context;
-//            String view_correct_answer = question.get(1).toString();
-////            TextView clicked = (TextView) v;
-////            String choosen_answer = clicked.getText().toString();
-////
-////            // if answer is right get point
-////            if (view_correct_answer == choosen_answer){
-////                points += 1;
-////            }
+            String view_correct_answer = question.get(position).getCorrect_answer();
+            TextView clicked = (TextView) v;
+            String choosen_answer = clicked.getText().toString();
 
+            // if answer is right get point
+            if (view_correct_answer == choosen_answer){
+                points += 1;
+            }
+            Log.d("puntentelling", "onClick: " + points);
             ArrayList<ListScoreItems> ScoreItems = new ArrayList<>();
             Intent intent = getIntent();
             String username = intent.getStringExtra("username");
@@ -98,18 +101,16 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
             position += 1;
 //            TriviaHelper helper = new TriviaHelper(context);
 //            helper.getQuestion((TriviaHelper.Callback) this);
-
+            Log.d("clicken", "onClick: " + position);
             // get a new question
             TriviaHelper help = new TriviaHelper(getApplicationContext());
             help.getQuestion(TriviaActivity.this);
 
             if (position == 7){
-
+                Intent pintent = new Intent(TriviaActivity.this, StartActivity.class);
+                Toast.makeText(TriviaActivity.this, "Points : " + Points, Toast.LENGTH_LONG).show();
+                startActivity(pintent);
             }
-
-//            Intent pintent = new Intent(TriviaActivity.this, TriviaHelper.class);
-//            intent.putExtra("position", position);
-//            startActivity(pintent);
 
 
 
