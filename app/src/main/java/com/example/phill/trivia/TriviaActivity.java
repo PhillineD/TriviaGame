@@ -25,7 +25,7 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
     int points;
     int position = 0;
     String Points;
-    int lengte = 5 ;
+    
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +108,9 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
             Points = String.valueOf(points);
             ListScoreItems newitem = new ListScoreItems(username, Points );
             ScoreItems.add(newitem);
+
+            TextView viewpoints = findViewById(R.id.TextPoints);
+            viewpoints.setText("POINTS:"+ " " + points);
 
             // get next question
 //            new TriviaHelper(context).getQuestion(context);
