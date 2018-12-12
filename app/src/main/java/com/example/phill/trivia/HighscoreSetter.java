@@ -15,7 +15,9 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+// class for POST request to url, to put username and score in url
 public class HighscoreSetter {
+
     Context context;
     public HighscoreSetter(Context context) {
         this.context = context;
@@ -25,25 +27,30 @@ public class HighscoreSetter {
     public void setScore(final String username, final int score){
 
         RequestQueue queue = Volley.newRequestQueue(this.context);
+
+        // url where we want to post the username and score
         String url = "https://ide50-pdikker.cs50.io:8080/list";
-        Log.d("plaatsen", "setScore: " + username + score);
+
+        // new string request
         StringRequest pastescore = new StringRequest(Request.Method.POST, url, null, new Response.ErrorListener() {
+
+            // if post failed
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-                Log.d("oh oh waar", "onErrorResponse: " + error.toString());
             }
         }) {
+            // create new hashmap
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("username", username);
                 params.put("scores", String.valueOf(score));
-                Log.d("parameters", "setScore: " + params);
+
                 return  params;
             }
         };
-        Log.d("plakken van de score", "setScore: " + pastescore);
+
         queue.add(pastescore);
 
     }

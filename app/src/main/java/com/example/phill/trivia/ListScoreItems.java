@@ -2,6 +2,7 @@ package com.example.phill.trivia;
 
 import java.io.Serializable;
 
+// ListscoreItems handles the username and scores
 public class ListScoreItems implements Serializable {
 
     String username;
@@ -23,6 +24,7 @@ public class ListScoreItems implements Serializable {
     public void setScore(String score) {
         this.score = score;
     }
+
 
     public ListScoreItems(String username, String score){
         this.username = username;

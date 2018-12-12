@@ -1,27 +1,21 @@
 package com.example.phill.trivia;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.constraint.solver.widgets.Helper;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-//implements QuestionRequest.Callback
 
+// TriviaActivty is the game-activity
 public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Callback {
-    //    QuestionItems question;
+
     ArrayList<QuestionItems> question;
     int points;
     int position = 0;
@@ -30,8 +24,8 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("foutje3", "StartQuiz: ");
-//        // get the username from the player form the first screen
+
+         // get the username from the player form the first screen
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
 
@@ -51,58 +45,75 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
         //set question
         TextView view_question = findViewById(R.id.question);
         view_question.setText(Html.fromHtml( question.get(position).getQuestion_1()));
-        Log.d("verkeerd", "gotQuestion: " + question.get(position).getAnswer_1() );
 
+        // generate random answers
         List<String> ques = Arrays.asList(question.get(position).getAnswer_1(),question.get(position).getAnswer_2(),question.get(position).getAnswer_3(), question.get(position).getAnswer_4());
         Collections.shuffle(ques);
 
-        // set answers random
+        // find textvieuws
         TextView view_answer1 = findViewById(R.id.answer_1);
         TextView view_answer2 = findViewById(R.id.answer_2);
         TextView view_answer3 = findViewById(R.id.answer_3);
         TextView view_answer4 = findViewById(R.id.answer_4);
 
-        // op een random positie moet een vraag komen
+        // set answer text
         view_answer1.setText( Html.fromHtml(ques.get(0)));
         view_answer2.setText( Html.fromHtml(ques.get(1)));
         view_answer3.setText( Html.fromHtml(ques.get(2)));
         view_answer4.setText( Html.fromHtml(ques.get(3)));
-//
+
+        // if clicked on answer
         view_answer1.setOnClickListener(new AnswerClicked());
         view_answer2.setOnClickListener(new AnswerClicked());
         view_answer3.setOnClickListener(new AnswerClicked());
         view_answer4.setOnClickListener(new AnswerClicked());
-//        Html.fromHtml()
+
     }
 
     // if home clicked
     public void home(View view) {
+
+        // set points and position back
         points = 0;
         position = 0;
+
+        // go to startactivty
         Intent stopintent = new Intent(TriviaActivity.this, StartActivity.class);
+
+        // get messege on screen
         Toast.makeText(TriviaActivity.this, "game stopped", Toast.LENGTH_LONG).show();
         startActivity(stopintent);
     }
 
-    // if clicked on class
+    // if clicked on an answer
     private class AnswerClicked implements View.OnClickListener{
         private TriviaActivity context;
         @Override
         public void onClick(View v) {
-//            this.context = context;
+
+            // get correct answer
             String view_correct_answer = question.get(position).getCorrect_answer();
             TextView clicked = (TextView) v;
+
+            // get choosen asnwer
             String choosen_answer = clicked.getText().toString();
 
-            // if answer is right get point
+            // if choosen answer equel to correct answer, get a point
             if (view_correct_answer == choosen_answer){
                 points += 1;
+
+                // messege on screen
                 Toast.makeText(TriviaActivity.this, "Yeah right answer", Toast.LENGTH_LONG).show();
             }
+
+            // if answer is wrong user not get a point
             else{
+
+                // messege on screen
                 Toast.makeText(TriviaActivity.this, "Unfortunately, wrong answer", Toast.LENGTH_LONG).show();
             }
-            Log.d("puntentelling", "onClick: " + points);
+
+            // fill new arraylist w
             ArrayList<ListScoreItems> ScoreItems = new ArrayList<>();
             Intent intent = getIntent();
             String username = intent.getStringExtra("username");
@@ -110,25 +121,24 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
             ListScoreItems newitem = new ListScoreItems(username, Points );
             ScoreItems.add(newitem);
 
+            // set textview with curret points
             TextView viewpoints = findViewById(R.id.TextPoints);
             viewpoints.setText("POINTS:"+ " " + points);
 
-            // get next question
-//            new TriviaHelper(context).getQuestion(context);
+            // position for next question
             position += 1;
-//            TriviaHelper helper = new TriviaHelper(context);
-//            helper.getQuestion((TriviaHelper.Callback) this);
-            Log.d("clicken", "onClick: " + position);
+
             // get a new question
             TriviaHelper help = new TriviaHelper(getApplicationContext());
             help.getQuestion(TriviaActivity.this);
 
             if (position == 7){
 
+                // set new score after 7 questions
                 HighscoreSetter post = new HighscoreSetter(TriviaActivity.this);
                 post.setScore(username,points);
 
-
+                // if 7 questions are answered
                 Intent pintent = new Intent(TriviaActivity.this, HighScoreActivity.class);
                 Toast.makeText(TriviaActivity.this, "Points : " + Points, Toast.LENGTH_LONG).show();
                 startActivity(pintent);

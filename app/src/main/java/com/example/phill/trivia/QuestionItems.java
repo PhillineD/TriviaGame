@@ -2,11 +2,12 @@ package com.example.phill.trivia;
 
 import java.util.ArrayList;
 
+// class handle the items from one questions
 public class QuestionItems extends ArrayList<QuestionItems> {
 
     private final String question_1, answer_1, answer_2, answer_3, answer_4, correct_answer;
 
-    // an request contains a question and 4 answers
+    // an request contains a question and 4 answers and the correct answers
     public QuestionItems(String question_1, String answer_1,String  answer_2, String answer_3, String answer_4, String correct_answer) {
         this.question_1= question_1;
         this.correct_answer= correct_answer;
@@ -16,6 +17,7 @@ public class QuestionItems extends ArrayList<QuestionItems> {
         this.answer_4 =answer_4;
     }
 
+    // getters for answers and questions
     public String getCorrect_answer() {
         return correct_answer;
     }

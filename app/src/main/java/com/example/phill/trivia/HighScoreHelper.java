@@ -8,28 +8,25 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONStringer;
-
 import java.util.ArrayList;
-import java.util.ListIterator;
 
+// class for GET request, to get the username en score form url
 public class HighScoreHelper implements Response.ErrorListener, Response.Listener<JSONArray> {
-//    ArrayList<ListScoreItems> Highscores = new ArrayList<>();
+
     Context context;
     Callback callback;
 
+    // contructor
     public HighScoreHelper(Context context) {
         this.context = context;
     }
 
     public interface Callback {
         void gotscores(ArrayList<ListScoreItems> scores);
-
         void gotscoreserror(String message);
     }
 
@@ -57,30 +54,35 @@ public class HighScoreHelper implements Response.ErrorListener, Response.Listene
 
     @Override
     public void onResponse(JSONArray response) {
-        Log.d("scoren ophalen", "onResponse: hier wel "  ) ;
+
+        // Arraylist for Highscore items
         ArrayList<ListScoreItems> quest = new ArrayList<>();
+
         try {
-//             each time pick a new scores, with a username and a score from that username
-//            JSONArray question = response.getJSONArray("username");
+
+            // each time pick a new object, with a username and a score from that username
             for (int i = 0; i < response.length(); i++) {
+
+                    // get JSON object from server at position i
                     JSONObject json = response.getJSONObject(i);
 
+                    // get username and score from JSON file in url
                     String Username = json.getString("username");
                     String Score = json.getString("scores");
-                    Log.d("scoren ophalen", "onResponse: " + Score + Username);
 
+                    // put username and score in class
                     ListScoreItems score = new ListScoreItems(Username, Score);
 
-//                // add question and answers to the list
+                    // add class object to list
                     quest.add(score);
             }
 
             callback.gotscores(quest);
 
+         // if failed
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
     }
 
