@@ -41,6 +41,7 @@ public class HighScoreActivity extends AppCompatActivity implements HighScoreHel
     @Override
     public void gotscoreserror(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Log.d("error", "gotscoreserror: " + message);
     }
 
     public void Start(View view) {

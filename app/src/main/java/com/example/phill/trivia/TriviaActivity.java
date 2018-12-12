@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.solver.widgets.Helper;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +26,7 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
     int points;
     int position = 0;
     String Points;
-    
+
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,7 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
 
         //set question
         TextView view_question = findViewById(R.id.question);
-        view_question.setText(question.get(position).getQuestion_1());
+        view_question.setText(Html.fromHtml( question.get(position).getQuestion_1()));
         Log.d("verkeerd", "gotQuestion: " + question.get(position).getAnswer_1() );
 
         List<String> ques = Arrays.asList(question.get(position).getAnswer_1(),question.get(position).getAnswer_2(),question.get(position).getAnswer_3(), question.get(position).getAnswer_4());
@@ -62,16 +63,16 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
         TextView view_answer4 = findViewById(R.id.answer_4);
 
         // op een random positie moet een vraag komen
-        view_answer1.setText(ques.get(0));
-        view_answer2.setText( ques.get(1));
-        view_answer3.setText( ques.get(2));
-        view_answer4.setText( ques.get(3));
+        view_answer1.setText( Html.fromHtml(ques.get(0)));
+        view_answer2.setText( Html.fromHtml(ques.get(1)));
+        view_answer3.setText( Html.fromHtml(ques.get(2)));
+        view_answer4.setText( Html.fromHtml(ques.get(3)));
 //
         view_answer1.setOnClickListener(new AnswerClicked());
         view_answer2.setOnClickListener(new AnswerClicked());
         view_answer3.setOnClickListener(new AnswerClicked());
         view_answer4.setOnClickListener(new AnswerClicked());
-
+//        Html.fromHtml()
     }
 
     // if home clicked
