@@ -47,4 +47,13 @@
         android:layout_weight="1"
         android:background="@android:color/darker_gray"
         android:text="Button" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="118dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:onClick="home"
+        android:text="HOME" />
 </LinearLayout>

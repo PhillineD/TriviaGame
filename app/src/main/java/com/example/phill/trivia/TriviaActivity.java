@@ -74,6 +74,15 @@ public class TriviaActivity extends AppCompatActivity implements TriviaHelper.Ca
 
     }
 
+    // if home clicked
+    public void home(View view) {
+        points = 0;
+        position = 0;
+        Intent stopintent = new Intent(TriviaActivity.this, StartActivity.class);
+        Toast.makeText(TriviaActivity.this, "game stopped", Toast.LENGTH_LONG).show();
+        startActivity(stopintent);
+    }
+
     // if clicked on class
     private class AnswerClicked implements View.OnClickListener{
         private TriviaActivity context;

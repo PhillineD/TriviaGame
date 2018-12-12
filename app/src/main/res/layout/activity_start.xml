@@ -10,13 +10,13 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="62dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
         android:autoText="false"
         android:gravity="center"
         android:text="Let's play sport trivia game!"
         android:textColor="@android:color/black"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="normal|bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -42,7 +42,7 @@
         android:layout_width="100dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/colorPrimaryDark"
         android:onClick="Ok"
         android:text="Ok"
@@ -69,5 +69,10 @@
         android:onClick="Leaderboard"
         android:text="Leaderboard"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="131dp" />
 
 </LinearLayout>
