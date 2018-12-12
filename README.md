@@ -5,7 +5,8 @@ After the game has finished, the user is be able to enter their score into a lea
 
 
 Philline Dikker Trivia 12317608
-![start1](https://user-images.githubusercontent.com/43133057/49860955-183bf000-fdfb-11e8-9293-86e47a7d0307.png)
+<img src="https://user-images.githubusercontent.com/43133057/49860955-183bf000-fdfb-11e8-9293-86e47a7d0307.png" width="50%" height="50%"/>
+![start1]()
 ![start2](https://user-images.githubusercontent.com/43133057/49860957-183bf000-fdfb-11e8-9b22-e3b807149d3e.png)
 
 
